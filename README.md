@@ -9,6 +9,7 @@ following `R` packages are available in your local environment
 
 ``` r
 ## Initial setup ----
+#| echo: true
 #| output: false
 #| warning: false
 suppressMessages({
@@ -27,13 +28,32 @@ suppressMessages({
 
 Once this dependency is satisfied, render this README with this command:
 
-    quarto render README.qmd --cache-refresh  --verbose`
+    quarto render README.qmd --cache-refresh  --verbose
 
-# First section
+------------------------------------------------------------------------
 
-## First slide
+*Setup Github Actions/Pages*
 
-Table below shows the first six rows from the MTCars dataset
+    $ git checkout -b gh-pages
+    $ git reset --hard
+    $ git rm -r .github/workflows/quarto-publish-example.yml
+    $ git commit -am "Initialising gh-pages branch"
+    $ quarto render README.qmd --cache-refresh  --verbose # verify ability to render
+    $ git push -u origin gh-pages
+    $ git checkout main
+    $ quarto publish gh-pages
+
+------------------------------------------------------------------------
+
+Turn this README document into presentation slides with this command:
+
+    quarto render README.qmd --cache-refresh --to revealjs --verbose
+
+------------------------------------------------------------------------
+
+## Table
+
+The table below shows the first six rows from the MTCars dataset
 
 ``` r
 head(mtcars)
@@ -47,7 +67,9 @@ head(mtcars)
     Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
     Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
 
-## Second slide
+------------------------------------------------------------------------
+
+## Chart
 
 [Figure 1](#fig-mtscatter) shows a relationship between `wt` and `mpg`
 features in the MTCars dataset.
