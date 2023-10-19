@@ -57,6 +57,5 @@ jobs:
           render: false
           path: README.qmd # By default, the current working dir is used i.e `quarto render .
           target: gh-pages
-          to: html
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions
