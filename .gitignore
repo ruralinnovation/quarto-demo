@@ -1,0 +1,11 @@
+.idea
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.DS_Store
+*_cache/
+*_files/
+*.html
+/.quarto/
+/_site/
