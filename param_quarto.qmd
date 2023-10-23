@@ -1,0 +1,86 @@
+---
+title: "Testing param for quarto"
+author: Olivier Leroy
+subtitle: "a quick example"
+date: today
+format:
+  html:
+    echo: false
+params: 
+  state: "AK"
+---
+
+```{r}
+#| message: false
+
+ANSI_let = c("AL", "AK", "AZ", "AR", "CA", "CO",
+             "CT", "DE", "DC", "FL", "GA",
+             "HI", "ID", "IL", "IN", "IA", "KS",
+             "KY", "LA", "ME", "MD", "MA", "MI",
+             "MN", "MS", "MO", "MT",  "NE", "NV",
+             "NH", "NJ", "NM", "NY", "NC", "ND",
+             "OH", "OK", "OR", "PA", "RI", "SC",
+             "SD", "TN", "TX", "UT", "VT",
+             "VA", "WA", "WV", "WI", "WY",
+             "AS", "GU", "MP", "PR", "VI")
+
+
+if (! params$state  %in% ANSI_let) {
+  stop("No state abbreviation matchs the one provided please verify your spelling")
+} 
+
+library(cori.db)
+library(ggplot2)
+library(cori.charts)
+library(mapview)
+library(sf)
+
+sql <- "SELECT 
+state_abbr,
+  geoid_st,
+  geoid_co,
+  co_category_area,
+  cnt_total_locations,
+  cnt_fiber_locations,
+  cnt_100_20_loc,
+  cnt_25_3_loc,
+  geom
+FROM 
+  sch_broadband.bb_map_co_2022decareav3e
+where state_abbr = ?state;"
+
+
+get_me_cty <- function(){
+  con <- cori.db::connect_to_db("sch_broadband")
+  my_query <- DBI::sqlInterpolate(con, sql, state = params$state)
+  dat <- sf::st_read(dsn = con, query = my_query)
+  DBI::dbDisconnect(con)
+  return(dat)
+}
+
+dat <- get_me_cty()
+```
+  
+
+# Report for `r params$state`
+
+`r params$state` has `r nrow(dat)` counties.
+
+
+# A test with a map
+
+```{r}
+mapview::mapview(dat, zcol = "co_category_area")
+```
+
+# A quick plot
+
+```{r}
+dat |>
+  ggplot(aes(x = as.integer(cnt_total_locations), y = as.integer(cnt_fiber_locations))) +
+  geom_point() +
+  ggplot2::labs(x = "Number of locations",
+                y = "Number of locations with fiber") +
+  cori.charts::theme_cori()
+```
+

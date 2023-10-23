@@ -9,3 +9,4 @@
 *.html
 /.quarto/
 /_site/
+*.Rproj
