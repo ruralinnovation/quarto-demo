@@ -61,7 +61,7 @@ jobs:
       - name: Print GITHUB_WORKSPACE
         run: echo ${GITHUB_WORKSPACE}
 
-      - name: List outputs of after render
+      - name: List outputs after render
         run: |
           ls -l "${GITHUB_WORKSPACE}"
 
@@ -78,7 +78,6 @@ jobs:
 
       - name: Publish to GitHub Pages
         run: |
-          quarto render README.qmd --cache-refresh --to revealjs --verbose
-          quarto render README.qmd --cache-refresh --to gfm --verbose
-          quarto render README.qmd --cache-refresh  --verbose
+          ls -l "${GITHUB_WORKSPACE}"
+          rm README.md
           quarto publish gh-pages
