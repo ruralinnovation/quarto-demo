@@ -65,13 +65,6 @@ jobs:
           ls -l "${GITHUB_WORKSPACE}"
 
 
-      - name: Publish to GitHub Pages
-        run: |
-          ls -l "${GITHUB_WORKSPACE}"
-          mv README.knit.md README.md
-#          quarto publish gh-pages
-
-
       # NOTE: If Publishing to GitHub Pages, set the permissions correctly (see top of this yaml)
       - name: Publish to GitHub Pages
         uses: quarto-dev/quarto-actions/publish@v2
