@@ -4,3 +4,9 @@
 .Rhistory
 .RData
 .Ruserdata
+
+/.quarto/
+/_site/
+/*_cache/
+/*_files/
+*.html
