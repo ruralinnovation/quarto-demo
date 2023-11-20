@@ -6,14 +6,16 @@ website:
   navbar:
     left:
       - href: index.qmd
-        text: Home
-      - param_quarto.qmd
+        text: "Home"
+      - href: param_quarto.qmd
+        text: "Testing param for quarto"
+      - href: README.html
+        text: "README"
 
 format:
-  html:
-    theme: cosmo
-    css: styles.css
-    toc: true
+  gfm:
+    filters:
+      - gfm-strip-disallowed
 
 
 
