@@ -53,12 +53,16 @@ jobs:
       - name: Render Quarto Project
         uses: quarto-dev/quarto-actions/render@v2
         with:
-          path: README.qmd # By default, the current working dir is used i.e `quarto render .`
           to: html # If set, it will be equivalent to `quarto render --to html`
 
 
-      - name: List outputs after first render
+      - name: Print GITHUB_WORKSPACE
         run: echo ${GITHUB_WORKSPACE}
+
+
+      - name: List outputs after render
+        run: |
+          ls -l "${GITHUB_WORKSPACE}/"
 
 
       - name: Render manually ...
