@@ -43,7 +43,8 @@ Once this dependency is satisfied, render this README with this command:
     $ git reset --hard
     $ git rm -r .github/workflows/quarto-publish-example.yml
     $ git commit -am "Initialising gh-pages branch"
-    $ quarto render README.qmd --cache-refresh  --verbose # verify ability to render
+    $ npm run build
     $ git push -u origin gh-pages
     $ git checkout main
-    $ quarto publish gh-pages
+    $ npm run build:all
+    $ npm run publish
