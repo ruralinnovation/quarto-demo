@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "param_quarto.html",
+    "href": "param_quarto.html",
+    "title": "Testing param for quarto",
+    "section": "",
+    "text": "Reading layer `dat' from data source \n  `/home/runner/work/quarto-demo/quarto-demo/data/dat.geojson' \n  using driver `GeoJSON'\nSimple feature collection with 30 features and 8 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -179.2311 ymin: 51.17509 xmax: 179.8597 ymax: 71.43979\nGeodetic CRS:  NAD83\n\n\n\nReport for AK\nAK has 30 counties.\n\n\nA test with a map\n\n\n\n\n\n\n\n\n\nA quick plot\n\n\nWarning: Removed 1 rows containing missing values (`geom_point()`)."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Quarto Demo",
@@ -19,12 +26,5 @@
     "title": "Quarto Demo",
     "section": "Chart",
     "text": "Chart\nFigure 1 shows a relationship between wt and mpg features in the MTCars dataset.\n\nlibrary(ggplot2)\n\nggplot(mtcars, aes(x = wt, y = mpg)) +\n    geom_point(color = \"#0099f9\", size = 5)\n\n\n\n\nFigure 1: Weight of vehicle per 1000lbs (wt) vs. Miles/Gallon (mpg)"
-  },
-  {
-    "objectID": "param_quarto.html",
-    "href": "param_quarto.html",
-    "title": "Testing param for quarto",
-    "section": "",
-    "text": "Reading layer `dat' from data source \n  `/Users/johnhall/Documents/CORI/quarto-demo/data/dat.geojson' \n  using driver `GeoJSON'\nSimple feature collection with 30 features and 8 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -179.2311 ymin: 51.17509 xmax: 179.8597 ymax: 71.43979\nGeodetic CRS:  NAD83\n\n\n\nReport for AK\nAK has 30 counties.\n\n\nA test with a map\n\n\n\n\n\n\n\n\n\nA quick plot\n\n\nWarning: Removed 1 rows containing missing values (`geom_point()`)."
   }
 ]
