@@ -1,0 +1,28 @@
+{
+  "name": "quarto-demo",
+  "version": "0.0.1",
+  "description": "A template for Quarto rendered documentation",
+  "author": "MDA Team",
+  "license": "ISC",
+  "homepage": "https://ruralinnovation.github.io/quarto-demo/",
+  "main": "index.qmd",
+  "keywords": [
+    "documentation",
+    "quarto",
+    "template",
+    "r"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ruralinnovation/quarto-demo.git"
+  },
+  "scripts": {
+    "build": "quarto render --output-dir _site",
+    "build:all": "npm run build && npm run build:readme",
+    "build:markdown": "quarto render --output-dir _site --to gfm && npm run build:readme",
+    "build:readme": "quarto render README.qmd --output README.html --to html && quarto render README.qmd --cache-refresh --output README.md --to gfm && mv README_* _site/ && mv README.html _site/",
+    "clean": "rm -rf _site/*",
+    "publish": "quarto publish gh-pages",
+    "test": "quarto render README.qmd --cache-refresh  --verbose"
+  }
+}

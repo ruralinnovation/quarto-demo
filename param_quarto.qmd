@@ -13,8 +13,12 @@ params:
 ```{r}
 #| message: false
 
+library(sf)
+library(mapview)
+
 ANSI_let = c("AL", "AK", "AZ", "AR", "CA", "CO",
              "CT", "DE", "DC", "FL", "GA",
+             "HI", "ID", "IL", "IN", "IA", "KS",
              "HI", "ID", "IL", "IN", "IA", "KS",
              "KY", "LA", "ME", "MD", "MA", "MI",
              "MN", "MS", "MO", "MT",  "NE", "NV",
@@ -27,38 +31,26 @@ ANSI_let = c("AL", "AK", "AZ", "AR", "CA", "CO",
 
 if (! params$state  %in% ANSI_let) {
   stop("No state abbreviation matchs the one provided please verify your spelling")
-} 
-
-library(cori.db)
-library(ggplot2)
-library(cori.charts)
-library(mapview)
-library(sf)
-
-sql <- "SELECT 
-state_abbr,
-  geoid_st,
-  geoid_co,
-  co_category_area,
-  cnt_total_locations,
-  cnt_fiber_locations,
-  cnt_100_20_loc,
-  cnt_25_3_loc,
-  geom
-FROM 
-  sch_broadband.bb_map_co_2022decareav3e
-where state_abbr = ?state;"
-
-
-get_me_cty <- function(){
-  con <- cori.db::connect_to_db("sch_broadband")
-  my_query <- DBI::sqlInterpolate(con, sql, state = params$state)
-  dat <- sf::st_read(dsn = con, query = my_query)
-  DBI::dbDisconnect(con)
-  return(dat)
 }
 
-dat <- get_me_cty()
+data_dir <- if (grepl("/R", getwd())) {
+    stringr::str_replace(getwd(), "/R", "/data")
+  } else {
+    paste0(getwd(), "/data")
+  }
+
+save_dat <- paste0(data_dir, "/dat.geojson")
+
+dat <- if (!file.exists(save_dat)) {
+    source("R/get_me_cty.R")
+    d <- get_me_cty()
+    st_write(d, save_dat)
+    d
+} else {
+    d <- st_read(save_dat, stringsAsFactors = FALSE)
+    d
+}
+
 ```
   
 
@@ -70,17 +62,21 @@ dat <- get_me_cty()
 # A test with a map
 
 ```{r}
+
+library(mapview)
+library(sf)
+
 mapview::mapview(dat, zcol = "co_category_area")
 ```
 
 # A quick plot
 
 ```{r}
+library(ggplot2)
+
 dat |>
   ggplot(aes(x = as.integer(cnt_total_locations), y = as.integer(cnt_fiber_locations))) +
-  geom_point() +
-  ggplot2::labs(x = "Number of locations",
-                y = "Number of locations with fiber") +
-  cori.charts::theme_cori()
+    geom_point() +
+    ggplot2::labs(x = "Number of locations", y = "Number of locations with fiber")
 ```
 

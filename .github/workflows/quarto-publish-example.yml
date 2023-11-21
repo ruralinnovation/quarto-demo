@@ -57,15 +57,16 @@ jobs:
           to: html # If set, it will be equivalent to `quarto render --to html`
 
 
-      - name: Print GITHUB_WORKSPACE
+      - name: List outputs after first render
         run: echo ${GITHUB_WORKSPACE}
 
 
       - name: Render manually ...
         run: |
-          quarto render
-          quarto render README.qmd --cache-refresh
-          cp -LR README* _site/
+          quarto render --output-dir _site
+          quarto render README.qmd --output README.html --to html
+          mv README_* _site/
+          mv README.html _site/
 
 
       - name: List outputs after second render

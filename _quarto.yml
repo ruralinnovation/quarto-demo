@@ -13,9 +13,10 @@ website:
         text: "README"
 
 format:
-  gfm:
-    filters:
-      - gfm-strip-disallowed
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
 
 
 

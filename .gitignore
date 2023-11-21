@@ -5,9 +5,11 @@
 .RData
 .Ruserdata
 
-/.quarto/
+/.quarto.bak/
 /_site/
 /*_cache/
 /*_files/
 /venv/
 *.html
+
+/.quarto/
