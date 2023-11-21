@@ -1,1 +1,1 @@
-Sitemap: https://ruralinnovation.github.io/quarto-demo/sitemap.xml
+Sitemap: https://github.com/ruralinnovation/quarto-demo/sitemap.xml
