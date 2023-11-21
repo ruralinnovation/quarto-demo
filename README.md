@@ -31,20 +31,15 @@ suppressMessages({
 })
 ```
 
-Once this dependency is satisfied, render this README with this command:
+Once this dependency is satisfied, render this README (as markdown) with
+this command:
 
-    quarto render README.qmd --cache-refresh  --verbose
+    quarto render README.qmd --cache-refresh --output README.md --to gfm  --verbose
 
-------------------------------------------------------------------------
+Render the entire project with this `npm` command:
 
-*Setup Github Actions/Pages*
+    npm run build:all
 
-    $ git checkout -b gh-pages
-    $ git reset --hard
-    $ git rm -r .github/workflows/quarto-publish-example.yml
-    $ git commit -am "Initialising gh-pages branch"
-    $ npm run build
-    $ git push -u origin gh-pages
-    $ git checkout main
-    $ npm run build:all
-    $ npm run publish
+Render the entire project as markdown with this `npm` command:
+
+    npm run build:markdown

@@ -71,7 +71,7 @@ jobs:
 
       - name: List outputs after second render
         run: |
-          ls -l "${GITHUB_WORKSPACE}"
+          ls -l "${GITHUB_WORKSPACE}/_site/"
 
 
       # NOTE: If Publishing to GitHub Pages, set the permissions correctly (see top of this yaml)
