@@ -1,0 +1,82 @@
+---
+title: "Testing param for quarto"
+author: Olivier Leroy
+subtitle: "a quick example"
+date: today
+format:
+  html:
+    echo: false
+params: 
+  state: "AK"
+---
+
+```{r}
+#| message: false
+
+library(sf)
+library(mapview)
+
+ANSI_let = c("AL", "AK", "AZ", "AR", "CA", "CO",
+             "CT", "DE", "DC", "FL", "GA",
+             "HI", "ID", "IL", "IN", "IA", "KS",
+             "HI", "ID", "IL", "IN", "IA", "KS",
+             "KY", "LA", "ME", "MD", "MA", "MI",
+             "MN", "MS", "MO", "MT",  "NE", "NV",
+             "NH", "NJ", "NM", "NY", "NC", "ND",
+             "OH", "OK", "OR", "PA", "RI", "SC",
+             "SD", "TN", "TX", "UT", "VT",
+             "VA", "WA", "WV", "WI", "WY",
+             "AS", "GU", "MP", "PR", "VI")
+
+
+if (! params$state  %in% ANSI_let) {
+  stop("No state abbreviation matchs the one provided please verify your spelling")
+}
+
+data_dir <- if (grepl("/R", getwd())) {
+    stringr::str_replace(getwd(), "/R", "/data")
+  } else {
+    paste0(getwd(), "/data")
+  }
+
+save_dat <- paste0(data_dir, "/dat.geojson")
+
+dat <- if (!file.exists(save_dat)) {
+    source("R/get_me_cty.R")
+    d <- get_me_cty()
+    st_write(d, save_dat)
+    d
+} else {
+    d <- st_read(save_dat, stringsAsFactors = FALSE)
+    d
+}
+
+```
+  
+
+# Report for `r params$state`
+
+`r params$state` has `r nrow(dat)` counties.
+
+
+# A test with a map
+
+```{r}
+
+library(mapview)
+library(sf)
+
+mapview::mapview(dat, zcol = "co_category_area")
+```
+
+# A quick plot
+
+```{r}
+library(ggplot2)
+
+dat |>
+  ggplot(aes(x = as.integer(cnt_total_locations), y = as.integer(cnt_fiber_locations))) +
+    geom_point() +
+    ggplot2::labs(x = "Number of locations", y = "Number of locations with fiber")
+```
+

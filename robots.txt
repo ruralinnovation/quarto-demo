@@ -1,1 +1,0 @@
-Sitemap: https://ruralinnovation.github.io/quarto-demo/sitemap.xml

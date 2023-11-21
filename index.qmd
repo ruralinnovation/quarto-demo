@@ -1,0 +1,38 @@
+---
+title: "Quarto Demo"
+---
+
+This is a Quarto website.
+
+To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+
+---
+
+Turn this README document into presentation slides with this command:
+```
+quarto render index.qmd --cache-refresh --to revealjs --verbose
+```
+
+----
+
+## Table
+
+The table below shows the first six rows from the MTCars dataset
+```{r}
+head(mtcars)
+```
+
+---
+
+## Chart
+
+@fig-mtscatter shows a relationship between `wt` and `mpg` features in the MTCars dataset.
+```{r}
+#| label: fig-mtscatter
+#| fig-cap: Weight of vehicle per 1000lbs (wt) vs. Miles/Gallon (mpg)
+
+library(ggplot2)
+
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+    geom_point(color = "#0099f9", size = 5)
+```
