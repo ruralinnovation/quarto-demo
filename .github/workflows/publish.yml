@@ -7,7 +7,7 @@ name: Quarto Publish
 
 jobs:
   build-deploy:
-    runs-on: rocker/geospatial
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
@@ -31,11 +31,11 @@ jobs:
             any::curl
             any::palmerpenguins
             any::rmarkdown
-            any::tidyverse
-            any::mapview
-            any::renv
-            any::sf
-            any::yaml
+#            any::tidyverse
+#            any::mapview
+#            any::renv
+#            any::sf
+#            any::yaml
 
 #      - name: Install R Dependencies
 #        uses: r-lib/actions/setup-renv@v2
