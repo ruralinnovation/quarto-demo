@@ -46,3 +46,13 @@ jobs:
           target: gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Print GITHUB_TOKEN
+        run: echo ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Print GITHUB_WORKSPACE
+        run: echo ${GITHUB_WORKSPACE}
+
+      - name: List outputs after render
+        run: |
+          ls -l "${GITHUB_WORKSPACE}/"
