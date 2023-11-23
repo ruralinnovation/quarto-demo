@@ -10,7 +10,6 @@ following `R` packages are available in your local environment
 ``` r
 required_packages <- c(
   "markdown",
-  "rmarkdown",
   "tidyverse",
   "palmerpenguins"
 )

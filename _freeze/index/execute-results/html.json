@@ -1,8 +1,10 @@
 {
-  "hash": "6b2c01b5c6e86893bf5f4d7c29823dbc",
+  "hash": "7d923d9b8cd8a85b38742ff2210586a2",
   "result": {
-    "markdown": "---\ntitle: \"Quarto Demo\"\n---\n\n\nThis is a Quarto website.\n\nTo learn more about Quarto websites visit <https://quarto.org/docs/websites>.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n",
-    "supporting": [],
+    "markdown": "---\ntitle: \"\"\n---\n---\ntitle: \"Quarto Demo\"\nauthor: \"MDA Team\"\ndate: \"2023-10-19\"\nformat:\n  gfm:\n    filters:\n    - gfm-strip-disallowed\n---\n\n\nBefore you render this file with `quarto`, you will need to make sure that\nthe [`quarto cli`](https://quarto.org/docs/get-started/) *and* the following `R` packages are available in your local\nenvironment (shell/terminal)...\n::: {.cell}\n\n```{.r .cell-code}\nrequired_packages <- c(\n  \"markdown\",\n  \"tidyverse\",\n  \"palmerpenguins\"\n)\n```\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\n## Initial setup ----\n#| echo: false\n#| output: false\n#| warning: false\n\nsuppressMessages({\n    if (!require(\"tidyverse\") || !require(\"palmerpenguins\")) {\n        options(\n         repos = c(CRAN = \"https://cran.rstudio.com\")\n        )\n        install.packages(required_packages)\n    }\n})\n```\n:::\n\nOnce this dependency is satisfied, render this README (as markdown) with this command:\n\n    quarto render README.qmd --cache-refresh --output README.md --to gfm  --verbose\n\nRender the entire project with this `npm` command:\n\n    npm run build:all\n\nRender the entire project as markdown with this `npm` command:\n\n    npm run build:markdown\n\n\n",
+    "supporting": [
+      "index_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],

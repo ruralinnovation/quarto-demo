@@ -18,9 +18,8 @@
   },
   "scripts": {
     "build": "quarto render --output-dir _site",
-    "build:all": "npm run build && npm run build:readme",
-    "build:markdown": "quarto render --output-dir _site --to gfm && quarto render README.qmd --cache-refresh --output README.md --to gfm && cp README.md _site/",
-    "build:readme": "quarto render README.qmd --output README.html --to html && quarto render README.qmd --cache-refresh --output README.md --to gfm && mv README_* _site/ && mv README.html _site/",
+    "build:markdown": "quarto render --output-dir _site --to gfm && npm run build:readme && cp README.md _site/",
+    "build:readme": "quarto render README.qmd --cache-refresh --output README.md --to gfm",
     "clean": "rm -rf _site/*",
     "publish": "quarto publish gh-pages",
     "test": "quarto render README.qmd --cache-refresh  --verbose"
