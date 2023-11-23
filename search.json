@@ -4,27 +4,13 @@
     "href": "param_quarto.html",
     "title": "Testing param for quarto",
     "section": "",
-    "text": "Reading layer `dat' from data source \n  `/home/runner/work/quarto-demo/quarto-demo/data/dat.geojson' \n  using driver `GeoJSON'\nSimple feature collection with 30 features and 8 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -179.2311 ymin: 51.17509 xmax: 179.8597 ymax: 71.43979\nGeodetic CRS:  NAD83\n\n\n\nReport for AK\nAK has 30 counties.\n\n\nA test with a map\n\n\n\n\n\n\n\n\n\nA quick plot\n\n\nWarning: Removed 1 rows containing missing values (`geom_point()`)."
+    "text": "Reading layer `dat' from data source \n  `/Users/johnhall/Documents/quarto-demo/data/dat.geojson' using driver `GeoJSON'\nSimple feature collection with 30 features and 8 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -179.2311 ymin: 51.17509 xmax: 179.8597 ymax: 71.43979\nGeodetic CRS:  NAD83\n\n\n\nReport for AK\nAK has 30 counties.\n\n\nA test with a map\n\n\n\n\n\n\n\n\n\nA quick plot\n\n\nWarning: Removed 1 rows containing missing values (`geom_point()`)."
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Quarto Demo",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\nTurn this README document into presentation slides with this command:"
-  },
-  {
-    "objectID": "index.html#table",
-    "href": "index.html#table",
-    "title": "Quarto Demo",
-    "section": "Table",
-    "text": "Table\nThe table below shows the first six rows from the MTCars dataset\n\nhead(mtcars)\n\n                   mpg cyl disp  hp drat    wt  qsec vs am gear carb\nMazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4\nMazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4\nDatsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1\nHornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1\nHornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2\nValiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1"
-  },
-  {
-    "objectID": "index.html#chart",
-    "href": "index.html#chart",
-    "title": "Quarto Demo",
-    "section": "Chart",
-    "text": "Chart\nFigure 1 shows a relationship between wt and mpg features in the MTCars dataset.\n\nlibrary(ggplot2)\n\nggplot(mtcars, aes(x = wt, y = mpg)) +\n    geom_point(color = \"#0099f9\", size = 5)\n\n\n\n\nFigure 1: Weight of vehicle per 1000lbs (wt) vs. Miles/Gallon (mpg)"
+    "text": "Before you render this file with quarto, you will need to make sure that the quarto cli and the following R packages are available in your local environment (shell/terminal)… ::: {.cell}\nrequired_packages &lt;- c(\n  \"markdown\",\n  \"tidyverse\",\n  \"palmerpenguins\"\n)\n:::\n\n## Initial setup ----\n#| echo: false\n#| output: false\n#| warning: false\n\nsuppressMessages({\n    if (!require(\"tidyverse\") || !require(\"palmerpenguins\")) {\n        options(\n         repos = c(CRAN = \"https://cran.rstudio.com\")\n        )\n        install.packages(required_packages)\n    }\n})\n\nOnce this dependency is satisfied, render this README (as markdown) with this command:\nquarto render README.qmd --cache-refresh --output README.md --to gfm  --verbose\nRender the entire project with this npm command:\nnpm run build:all\nRender the entire project as markdown with this npm command:\nnpm run build:markdown"
   }
 ]
