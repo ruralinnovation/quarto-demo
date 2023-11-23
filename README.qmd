@@ -9,9 +9,8 @@ format:
 ---
 
 
-Before you render this file with `quarto`, you will need to make sure that
-the [`quarto cli`](https://quarto.org/docs/get-started/) *and* the following `R` packages are available in your local
-environment (shell/terminal)...
+Before you render this file with `quarto`, you will need to make sure that the [`quarto cli`](https://quarto.org/docs/get-started/) *and* the following `R` packages are available in your local environment (shell/terminal):
+
 ```{r, echo=TRUE}
 required_packages <- c(
   "markdown",
