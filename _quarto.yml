@@ -6,17 +6,14 @@ website:
   navbar:
     left:
       - href: index.qmd
-        text: "Home"
-      - href: param_quarto.qmd
-        text: "Testing param for quarto"
-      - href: README.html
-        text: "README"
+        text: Home
+      - param_quarto.qmd
+
+execute:
+  freeze: auto
 
 format:
   html:
     theme: cosmo
     css: styles.css
     toc: true
-
-
-

@@ -9,6 +9,7 @@
 /_site/
 /*_cache/
 /*_files/
+/renv/*/
 /venv/
 *.html
 

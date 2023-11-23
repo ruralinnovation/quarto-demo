@@ -1,0 +1,16 @@
+{
+  "hash": "0ef5ca3507dbfcbeb3420c90f898b325",
+  "result": {
+    "markdown": "---\ntitle: \"Testing param for quarto\"\nauthor: Olivier Leroy\nsubtitle: \"a quick example\"\ndate: today\nformat:\n  html:\n    echo: false\nparams: \n  state: \"AK\"\n---\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(sf)\nlibrary(mapview)\n\nANSI_let = c(\"AL\", \"AK\", \"AZ\", \"AR\", \"CA\", \"CO\",\n             \"CT\", \"DE\", \"DC\", \"FL\", \"GA\",\n             \"HI\", \"ID\", \"IL\", \"IN\", \"IA\", \"KS\",\n             \"HI\", \"ID\", \"IL\", \"IN\", \"IA\", \"KS\",\n             \"KY\", \"LA\", \"ME\", \"MD\", \"MA\", \"MI\",\n             \"MN\", \"MS\", \"MO\", \"MT\",  \"NE\", \"NV\",\n             \"NH\", \"NJ\", \"NM\", \"NY\", \"NC\", \"ND\",\n             \"OH\", \"OK\", \"OR\", \"PA\", \"RI\", \"SC\",\n             \"SD\", \"TN\", \"TX\", \"UT\", \"VT\",\n             \"VA\", \"WA\", \"WV\", \"WI\", \"WY\",\n             \"AS\", \"GU\", \"MP\", \"PR\", \"VI\")\n\n\nif (! params$state  %in% ANSI_let) {\n  stop(\"No state abbreviation matchs the one provided please verify your spelling\")\n}\n\ndata_dir <- if (grepl(\"/R\", getwd())) {\n    stringr::str_replace(getwd(), \"/R\", \"/data\")\n  } else {\n    paste0(getwd(), \"/data\")\n  }\n\nsave_dat <- paste0(data_dir, \"/dat.geojson\")\n\ndat <- if (!file.exists(save_dat)) {\n    source(\"R/get_me_cty.R\")\n    d <- get_me_cty()\n    st_write(d, save_dat)\n    d\n} else {\n    d <- st_read(save_dat, stringsAsFactors = FALSE)\n    d\n}\n```\n\n::: {.cell-output .cell-output-stdout}\n```\nReading layer `dat' from data source \n  `/Users/johnhall/Documents/quarto-demo/data/dat.geojson' using driver `GeoJSON'\nSimple feature collection with 30 features and 8 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -179.2311 ymin: 51.17509 xmax: 179.8597 ymax: 71.43979\nGeodetic CRS:  NAD83\n```\n:::\n:::\n\n\n  \n\n# Report for AK\n\nAK has 30 counties.\n\n\n# A test with a map\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(mapview)\nlibrary(sf)\n\nmapview::mapview(dat, zcol = \"co_category_area\")\n```\n\n::: {.cell-output-display}\n![](param_quarto_files/figure-commonmark/unnamed-chunk-2-1.png)\n:::\n:::\n\n\n\n# A quick plot\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(ggplot2)\n\ndat |>\n  ggplot(aes(x = as.integer(cnt_total_locations), y = as.integer(cnt_fiber_locations))) +\n    geom_point() +\n    ggplot2::labs(x = \"Number of locations\", y = \"Number of locations with fiber\")\n```\n\n::: {.cell-output .cell-output-stderr}\n```\nWarning: Removed 1 rows containing missing values (`geom_point()`).\n```\n:::\n\n::: {.cell-output-display}\n![](param_quarto_files/figure-commonmark/unnamed-chunk-3-1.png)\n:::\n:::\n",
+    "supporting": [
+      "param_quarto_files/figure-commonmark"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": null,
+    "postProcess": false
+  }
+}
